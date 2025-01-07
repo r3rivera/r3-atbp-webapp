@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 echo "############## START: Processing Build Of Your Web Application! ##############"
 set -e
 
