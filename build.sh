@@ -18,7 +18,7 @@ if ! command -v mvn &> /dev/null; then
 fi
 
 # Checks if we have some args provided
-if [ "$#" -eq 0]; then
+if [ "$#" -eq 0 ]; then
   usage
 fi
 
@@ -60,4 +60,8 @@ BUILD_TIME="$(date +%H%M%S)"
 echo "Build Date   :: ${BUILD_DATE}"
 echo "Build Time   :: ${BUILD_TIME}"
 echo "Git Commit   :: ${GIT_COMMIT_ID}"
+echo ""
+echo ""
 echo "############## COMPLETE: Build Of Your Web Application is SUCCESS! ##############"
+echo ""
+echo ""
