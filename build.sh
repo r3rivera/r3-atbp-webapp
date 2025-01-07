@@ -44,4 +44,19 @@ elif [ "$1" == "install" ]; then
 else
   usage
 fi
+
+echo "## Displaying GIT Version..."
+git --version | head -n 1
+echo ""
+echo "Git URL      :: ${GIT_URL}"
+echo "Git Branch   :: ${GIT_BRANCH}"
+echo "Build ID     :: ${BUILD_ID}"
+echo "Build Number :: ${BUILD_NUMBER}"
+echo "Git Branch   :: ${GIT_BRANCH}"
+GIT_COMMIT_ID="$(git log | head -n 1 | cut -d '/' -f 2)"
+BUILD_DATE="$(date +%m%d%Y)"
+BUILD_TIME="$(date +%H%M%S)"
+echo "Build Date   :: ${BUILD_DATE}"
+echo "Build Time   :: ${BUILD_TIME}"
+echo "Git Commit   :: ${GIT_COMMIT_ID}"
 echo "############## COMPLETE: Build Of Your Web Application is SUCCESS! ##############"
