@@ -33,9 +33,7 @@ fi
 if [ "$1" == "compile" ]; then
   echo "Compiling Project..."
   mvn compile
-fi
-
-if [ "$1" == "package" ]; then
+elif [ "$1" == "package" ]; then
   echo "Packaging Project..."
   mvn package
 elif [ "$1" == "install" ]; then
@@ -45,6 +43,9 @@ else
   usage
 fi
 
+
+echo ""
+echo ""
 echo "## Displaying GIT Version..."
 git --version | head -n 1
 echo ""
