@@ -1,5 +1,4 @@
-FROM amazoncorretto:17.0.4-alpine
-
+FROM amazoncorretto:23-al2023
 ARG jar_name
 
 LABEL Owner="r.ryan.rivera@outlook.com"
