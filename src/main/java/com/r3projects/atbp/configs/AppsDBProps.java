@@ -13,6 +13,7 @@ public class AppsDBProps {
     private String username;
     private String password;
     private String driverClassName;
+    private String schema;
 
     private int maximumPoolSize;
     private int minimumIdle;

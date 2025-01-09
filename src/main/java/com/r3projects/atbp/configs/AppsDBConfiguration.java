@@ -25,6 +25,8 @@ public class AppsDBConfiguration {
         cfg.setPassword(appCfg.getPassword());
         cfg.setDriverClassName(appCfg.getDriverClassName());
 
+        cfg.setSchema(appCfg.getSchema());
+
         cfg.setMaximumPoolSize(appCfg.getMaximumPoolSize());
         cfg.setMinimumIdle(appCfg.getMinimumIdle());
         cfg.setIdleTimeout(appCfg.getIdleTimeout());
@@ -32,7 +34,7 @@ public class AppsDBConfiguration {
         cfg.setMaxLifetime(appCfg.getMaxLifetime());
 
         log.info("Completed creating the JDBC Hikari DataSource.");
-        log.info("JDBC URL :: " + cfg.getJdbcUrl());
+        log.info("JDBC URL :: {} ::",cfg.getJdbcUrl());
         return new HikariDataSource(cfg);
     }
 

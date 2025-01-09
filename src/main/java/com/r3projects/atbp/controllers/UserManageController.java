@@ -1,5 +1,6 @@
 package com.r3projects.atbp.controllers;
 
+import com.r3projects.atbp.domain.DataDetails;
 import com.r3projects.atbp.model.ApiAppResponse;
 import com.r3projects.atbp.model.UserCreationRequest;
 import com.r3projects.atbp.model.UserCreationResponse;
@@ -23,12 +24,12 @@ public class UserManageController {
     @PostMapping("/user")
     public ResponseEntity<UserCreationResponse> createUser(@RequestBody UserCreationRequest request){
         log.info("Creating user information...");
-        final String userName = manageUserService.createUserName(request);
+        final DataDetails details = manageUserService.createUserName(request);
         final ApiAppResponse appResponse = new ApiAppResponse();
         appResponse.setStatusCode(0);
         appResponse.setStatusMessage("Success");
 
-        final UserCreationResponse userCreationResponse = new UserCreationResponse(userName, appResponse);
+        final UserCreationResponse userCreationResponse = new UserCreationResponse(details.getCreatedBy(), appResponse);
         return ResponseEntity.ok(userCreationResponse);
     }
 }
