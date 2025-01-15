@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class DataDetails {
+    private String id;
     private String createdBy;
     private LocalDateTime createdDate;
     private String modifiedBy;

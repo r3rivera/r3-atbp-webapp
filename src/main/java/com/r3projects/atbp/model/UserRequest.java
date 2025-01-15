@@ -5,7 +5,7 @@ import com.r3projects.atbp.domain.UserInfoDetails;
 import lombok.Data;
 
 @Data
-public class UserCreationRequest {
+public class UserRequest {
     private UserInfoDetails userInfo;
     private UserContactDetail contactDetail;
 }
