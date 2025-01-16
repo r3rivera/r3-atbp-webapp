@@ -41,5 +41,10 @@ public class ManageUserTrackingService {
         return trackingDBHandler.getAllActiveTracking();
     }
 
+    public DataDetails deleteByTrackerId(final String trackerUuid){
+        log.debug("Servicing deletion of tracking request by trackId of {}", trackerUuid);
+        return trackingDBHandler.deleteTrackingRecord(trackerUuid);
+    }
+
 
 }

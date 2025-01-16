@@ -1,5 +1,6 @@
 package com.r3projects.atbp.controllers;
 
+import com.r3projects.atbp.domain.DataDetails;
 import com.r3projects.atbp.domain.UserAddressGeoCode;
 import com.r3projects.atbp.domain.UserTrackingDetails;
 import com.r3projects.atbp.model.AppResponse;
@@ -36,5 +37,13 @@ public class UserManageTrackerController extends AppBaseController{
         final List<UserTrackingDetails> details = this.trackingService.getAllActiveTracks();
         final AppResponse<List<UserTrackingDetails>> response = new AppResponse<>(details, createSuccess());
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{trackId}")
+    public ResponseEntity<AppResponse<DataDetails>> deleteTrackingByTrackId(@PathVariable("trackId") final String trackUuid){
+        log.info("Getting tracking information by trackId of {}...", trackUuid);
+        final DataDetails response = this.trackingService.deleteByTrackerId(trackUuid);
+        final AppResponse<DataDetails> appResponse = new AppResponse<>(response, createSuccess());
+        return ResponseEntity.ok(appResponse);
     }
 }

@@ -37,6 +37,25 @@ public class ManageUserTrackingDBHandler extends BaseDBHandler implements IManag
     }
 
     @Transactional("DBTxnManager")
+    public DataDetails deleteTrackingRecord(String trackingUuid){
+        log.info("Start handling the deletion of tracking record!");
+        try{
+
+            this.jdbcTemplate.update(IManagerUsers.DELETE_TRACKING_RECORD_QRY, ps -> {
+                ps.setObject(1, UUID.fromString(trackingUuid));
+            });
+
+            final DataDetails details = new DataDetails();
+            details.setId(trackingUuid);
+            return details;
+
+        }catch(final Exception ex){
+            log.error("Error with DB process!", ex);
+            throw new JDBCException("Tracking Deletion Error");
+        }
+    }
+
+    @Transactional("DBTxnManager")
     public DataDetails createUserTracking(String userUuid, String startAddress, AddressGeocode startLoc,
                                           String destinationAddress, AddressGeocode destLoc, String updatedBy){
         log.info("Start handling the creation of new user!");
