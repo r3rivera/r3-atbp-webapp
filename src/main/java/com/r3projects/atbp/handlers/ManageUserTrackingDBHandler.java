@@ -2,8 +2,10 @@ package com.r3projects.atbp.handlers;
 
 import com.r3projects.atbp.domain.AddressGeocode;
 import com.r3projects.atbp.domain.DataDetails;
+import com.r3projects.atbp.domain.UserTrackingDetails;
 import com.r3projects.atbp.exception.JDBCException;
 import com.r3projects.atbp.handlers.jdbc.IManagerUsers;
+import com.r3projects.atbp.handlers.jdbc.domain.UserTrackingDetailRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -22,6 +25,16 @@ import java.util.UUID;
 public class ManageUserTrackingDBHandler extends BaseDBHandler implements IManagerUsers {
 
     private final JdbcTemplate jdbcTemplate;
+
+    public List<UserTrackingDetails> getAllActiveTracking(){
+        log.info("Start handling the querying all existing tracking records!");
+        try{
+            return this.jdbcTemplate.query(IManagerUsers.GET_ALL_USER_TRACKING_QRY, new UserTrackingDetailRowMapper());
+        }catch(final Exception ex){
+            log.error("Error with DB process!", ex);
+            throw new JDBCException("User Tracking Query Error");
+        }
+    }
 
     @Transactional("DBTxnManager")
     public DataDetails createUserTracking(String userUuid, String startAddress, AddressGeocode startLoc,

@@ -1,14 +1,13 @@
 package com.r3projects.atbp.services;
 
-import com.r3projects.atbp.domain.AddressGeocode;
-import com.r3projects.atbp.domain.DataDetails;
-import com.r3projects.atbp.domain.UserAddressDetail;
-import com.r3projects.atbp.domain.UserAddressGeoCode;
+import com.r3projects.atbp.domain.*;
 import com.r3projects.atbp.handlers.ManageUserTrackingDBHandler;
 import com.r3projects.atbp.providers.GoogleGeocodeApiProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -35,6 +34,11 @@ public class ManageUserTrackingService {
         addressGeoCode.setDestinationAddress(destinationLocation);
         addressGeoCode.setCreatedBy(result.getCreatedBy());
         return addressGeoCode;
+    }
+
+    public List<UserTrackingDetails> getAllActiveTracks(){
+        log.debug("Servicing getting all tracking request...");
+        return trackingDBHandler.getAllActiveTracking();
     }
 
 
