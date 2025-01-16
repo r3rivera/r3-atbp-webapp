@@ -8,14 +8,12 @@ import com.r3projects.atbp.handlers.jdbc.domain.UserInfoDetailRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -26,6 +24,7 @@ public class ManageUserDBHandler extends BaseDBHandler implements IManagerUsers 
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Transactional("DBTxnManager")
     public DataDetails createUserDetails(final UserInfoDetails infoDetails){
         log.info("Start handling the creation of new user!");
         try {

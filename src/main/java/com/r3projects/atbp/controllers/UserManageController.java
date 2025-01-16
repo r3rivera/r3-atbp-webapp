@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage")
-public class UserManageController {
+public class UserManageController extends AppBaseController{
 
     private final ManageUserService manageUserService;
 
@@ -34,11 +34,6 @@ public class UserManageController {
         return ResponseEntity.ok(new AppResponse( infoDetails, createSuccess()));
     }
 
-    private ApiAppResponse createSuccess(){
-        final ApiAppResponse appResponse = new ApiAppResponse();
-        appResponse.setStatusCode(0);
-        appResponse.setStatusMessage("Success");
-        return  appResponse;
-    }
+
 
 }
