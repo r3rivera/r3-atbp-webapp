@@ -28,7 +28,12 @@ public class GoogleGeocodeApiProvider {
         try {
            final GeocodingResult[] response = GeocodingApi.geocode(this.geoApiContext,locationAddress).await();
            if(response.length > 0){
-               return this.gson.fromJson(String.valueOf(response[0].geometry.location), AddressGeocode.class);
+               final double lat = response[0].geometry.location.lat;
+               final double lng = response[0].geometry.location.lng;
+               final AddressGeocode geocode = new AddressGeocode();
+               geocode.setLat(lat);
+               geocode.setLng(lng);
+               return geocode;
            }
             return null;
         } catch (Exception e) {

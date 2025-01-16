@@ -1,5 +1,6 @@
 package com.r3projects.atbp.controllers;
 
+import com.r3projects.atbp.domain.UserAddressGeoCode;
 import com.r3projects.atbp.model.AppResponse;
 import com.r3projects.atbp.model.UserTrackRequest;
 import com.r3projects.atbp.services.ManageUserTrackingService;
@@ -20,10 +21,12 @@ public class UserManageTrackerController extends AppBaseController{
     private final ManageUserTrackingService trackingService;
 
     @PostMapping("/user")
-    public ResponseEntity<AppResponse<String>> createUserTrack(@RequestBody UserTrackRequest trackRequest){
+    public ResponseEntity<AppResponse<UserAddressGeoCode>> createUserTrack(@RequestBody UserTrackRequest trackRequest){
         log.info("Creating user tracking information...");
-        this.trackingService.createUserTracker(trackRequest.getUserUuid(), trackRequest.getSourceAddress(), trackRequest.getDestinationAddress());
-        final AppResponse<String> response = new AppResponse<>("Dummy", createSuccess());
+        final UserAddressGeoCode result = this.trackingService
+                .createUserTracker(trackRequest.getUserUuid(),
+                        trackRequest.getSourceAddress(), trackRequest.getDestinationAddress());
+        final AppResponse<UserAddressGeoCode> response = new AppResponse<>(result, createSuccess());
         return ResponseEntity.ok(response);
     }
 }

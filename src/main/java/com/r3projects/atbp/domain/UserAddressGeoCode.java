@@ -1,9 +1,11 @@
 package com.r3projects.atbp.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class UserAddressGeoCode {
+@EqualsAndHashCode(callSuper = false)
+public class UserAddressGeoCode extends DataDetails{
     private AddressGeocode startAddress;
     private AddressGeocode destinationAddress;
 }

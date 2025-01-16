@@ -2,7 +2,6 @@ package com.r3projects.atbp.controllers;
 
 import com.r3projects.atbp.domain.DataDetails;
 import com.r3projects.atbp.domain.UserInfoDetails;
-import com.r3projects.atbp.model.ApiAppResponse;
 import com.r3projects.atbp.model.AppResponse;
 import com.r3projects.atbp.model.UserRequest;
 import com.r3projects.atbp.services.ManageUserService;
