@@ -32,7 +32,7 @@ echo "Remove Status :: ${DOCKER_CTR_RM}"
 #DOCKER_CURR="$(docker image rm ${DOCKER_TAG})"
 #echo "Removing existing docker images..."
 #echo "Remove Status :: ${DOCKER_CURR}"
-
+DOCKER_RUNTIME_NAME="r3app-atbp-service_${BUILD_TIMESTAMP}"
 
 
 docker build -t ${DOCKER_TAG} --build-arg jar_name=${JAR_FILE} --no-cache -f ./Dockerfile .
@@ -40,5 +40,5 @@ echo "Done Creating Docker Image"
 echo ""
 echo ""
 echo "Deploying a new docker container...."
-DOCKER_UUID="$(docker container run -p 8082:8082 -d --env-file .env --name ${DOCKER_TAG} ${DOCKER_TAG})"
+DOCKER_UUID="$(docker container run -p 8082:8082 -d --env-file .env --name ${DOCKER_RUNTIME_NAME} ${DOCKER_TAG})"
 echo "New Docker ID deployed :: ${DOCKER_UUID}"
