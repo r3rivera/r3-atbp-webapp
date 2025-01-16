@@ -37,7 +37,7 @@ public class ManageUserDBHandler extends BaseDBHandler implements IManagerUsers 
                 ps.setString(4, infoDetails.getUserName());
                 return ps;
             }, userIdKey);
-            final String userId = userIdKey.getKeyAs(String.class);
+            final String userId = userIdKey.getKeys().get("user_uuid").toString();
             log.debug("Handling creation of new user :: userId is {}, SQL update with {} status",userId, result);
 
             final DataDetails details = new DataDetails();
