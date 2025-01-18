@@ -1,9 +1,11 @@
 package com.r3projects.atbp.handlers;
 
 import com.r3projects.atbp.domain.DataDetails;
+import com.r3projects.atbp.domain.UserAppCredentialDetails;
 import com.r3projects.atbp.domain.UserInfoDetails;
 import com.r3projects.atbp.exception.JDBCException;
 import com.r3projects.atbp.handlers.jdbc.IManagerUsers;
+import com.r3projects.atbp.handlers.jdbc.domain.UserAppCredentialRowMapper;
 import com.r3projects.atbp.handlers.jdbc.domain.UserInfoDetailRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +51,18 @@ public class ManageUserDBHandler extends BaseDBHandler implements IManagerUsers 
         }catch(final Exception ex){
             log.error("Error with DB process!", ex);
             throw new JDBCException("User Creation Error");
+        }
+    }
+
+    public List<UserAppCredentialDetails> getAllActiveUser(){
+        log.info("Start getting all active user info!");
+        try{
+            final List<UserAppCredentialDetails> userAppCredentialDetails =
+                    this.jdbcTemplate.query(IManagerUsers.GET_ALL_ACTIVE_USER_QRY, new UserAppCredentialRowMapper());
+            return userAppCredentialDetails;
+        }catch(final Exception ex){
+            log.error("Error with DB process!", ex);
+            throw new JDBCException("User Query Error");
         }
     }
 

@@ -1,6 +1,7 @@
 package com.r3projects.atbp.controllers;
 
 import com.r3projects.atbp.domain.DataDetails;
+import com.r3projects.atbp.domain.UserAppCredentialDetails;
 import com.r3projects.atbp.domain.UserInfoDetails;
 import com.r3projects.atbp.model.AppResponse;
 import com.r3projects.atbp.model.UserRequest;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -33,6 +36,11 @@ public class UserManageController extends AppBaseController{
         return ResponseEntity.ok(new AppResponse( infoDetails, createSuccess()));
     }
 
-
+    @GetMapping("/users")
+    public ResponseEntity<AppResponse<List<UserAppCredentialDetails>>> getAllActiveUserDetails(){
+        log.info("Querying user information...");
+        List<UserAppCredentialDetails> userList = manageUserService.getAllActiveUser();
+        return ResponseEntity.ok(new AppResponse( userList, createSuccess()));
+    }
 
 }
