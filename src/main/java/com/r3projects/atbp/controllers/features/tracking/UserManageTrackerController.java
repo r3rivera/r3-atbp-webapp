@@ -1,5 +1,6 @@
-package com.r3projects.atbp.controllers;
+package com.r3projects.atbp.controllers.features.tracking;
 
+import com.r3projects.atbp.controllers.AppBaseController;
 import com.r3projects.atbp.domain.DataDetails;
 import com.r3projects.atbp.domain.UserAddressGeoCode;
 import com.r3projects.atbp.domain.UserTrackingDetails;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/tracker")
-public class UserManageTrackerController extends AppBaseController{
+public class UserManageTrackerController extends AppBaseController {
 
     private final ManageUserTrackingService trackingService;
 

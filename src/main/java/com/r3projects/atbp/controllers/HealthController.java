@@ -29,4 +29,11 @@ public class HealthController {
         return ResponseEntity.ok(appResponse);
     }
 
+    @GetMapping("/")
+    public ResponseEntity rootPage(){
+        log.info("Requesting from root!");
+        final ResponseEntity.HeadersBuilder builder = ResponseEntity.notFound();
+        return builder.build();
+    }
+
 }

@@ -1,5 +1,6 @@
-package com.r3projects.atbp.controllers;
+package com.r3projects.atbp.controllers.features.tracking;
 
+import com.r3projects.atbp.controllers.AppBaseController;
 import com.r3projects.atbp.domain.DataDetails;
 import com.r3projects.atbp.domain.UserAppCredentialDetails;
 import com.r3projects.atbp.domain.UserInfoDetails;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage")
-public class UserManageController extends AppBaseController{
+public class UserManageController extends AppBaseController {
 
     private final ManageUserService manageUserService;
 
