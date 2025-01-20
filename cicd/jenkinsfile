@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage('APP Build') {
+            steps{
+                echo '###################################################################################'
+                echo "Building ${APP_NAME} :: ${GIT_APP_REPO}"
+                echo "CURRENT WORKSPACE ::: ${WORKSPACE}"
+                sh "whoami"
+            }
+        }
+        stage('LOCAL Docker Deploy') {
+            steps{
+                echo "Deploying the app ${APP_NAME} in Local Docker"
+
+            }
+        }
+        stage('AWS ECR Upload') {
+            steps{
+                echo "Uploading the image of the app ${APP_NAME} in AWS ECR"
+            }
+        }
+
+        stage('AWS ECR Deploy') {
+            steps{
+                echo "Deploying the app ${APP_NAME} in AWS"
+            }
+        }
+
+    }
+}
